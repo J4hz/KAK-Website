@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Programs – {{ site.org_name }}{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_programs'); background-size:cover; background-position:center;">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">Our programs</h1>
+    <p class="hero-subtitle">Restorative education, family strengthening, protective care, justice advocacy, and community health &mdash; working across Nairobi, Nyeri, and Kisii counties.</p>
+  </div>
+</section>
+
+<!-- ===== INTERVENTION LEVELS ===== -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <p class="section-heading">Our intervention levels</p>
+    <h2 class="section-title">How we serve children and families</h2>
+    <p class="section-subtitle">KAI-K operates across five complementary areas, designed to meet children where they are and walk with them toward healing and wholeness.</p>
+
+    <div class="cards-grid" style="margin-top:2rem;">
+      <article class="card">
+        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3 class="card-title">Restorative Education</h3>
+        <p class="card-text">We run education and training programs in settings that support healing while children learn. Hall Mead School in Nyeri County provides a caring environment that supports children&rsquo;s academic, social, spiritual, and physical development.</p>
+        <div class="card-footer" style="color:var(--color-text-muted); font-size:0.82rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-primary);"></i> Nyeri County</div>
+      </article>
+      <article class="card">
+        <div class="card-icon"><i class="fa-solid fa-people-roof"></i></div>
+        <h3 class="card-title">Family Strengthening</h3>
+        <p class="card-text">We work with families to reduce the risks they face and help them grow stronger. Through our Hope Centres in Nairobi, Karundas, and Nyamarambe, we provide parenting support, psychosocial education, livelihood training, and mentorship.</p>
+        <div class="card-footer" style="color:var(--color-text-muted); font-size:0.82rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-primary);"></i> Nairobi, Nyeri &amp; Kisii Counties</div>
+      </article>
+      <article class="card">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="card-title">Protective Care</h3>
+        <p class="card-text">When a child has been abused or neglected and cannot safely stay at home, we provide temporary care. Our staff work to meet each child&rsquo;s needs for health, safety, and emotional healing, with the goal of returning every child to a safe family environment.</p>
+        <div class="card-footer" style="color:var(--color-text-muted); font-size:0.82rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-primary);"></i> All locations</div>
+      </article>
+      <article class="card">
+        <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h3 class="card-title">Justice Advocacy</h3>
+        <p class="card-text">We support children who have experienced abuse to access justice. Our teams include lawyers, psychologists, social workers, and spiritual leads who walk alongside the child and family through the legal process, and advocate for better laws at local, regional, and national levels.</p>
+        <div class="card-footer" style="color:var(--color-text-muted); font-size:0.82rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-primary);"></i> All locations</div>
+      </article>
+      <article class="card">
+        <div class="card-icon"><i class="fa-solid fa-kit-medical"></i></div>
+        <h3 class="card-title">Community Health</h3>
+        <p class="card-text">KAI-K owns and operates a clinic in Nyeri County that provides medical services to the local community, in partnership with the Nyeri County Government.</p>
+        <div class="card-footer" style="color:var(--color-text-muted); font-size:0.82rem;"><i class="fa-solid fa-location-dot" style="color:var(--color-primary);"></i> Nyeri County</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATIONS TABLE ===== -->
+<section class="section" style="background:var(--color-bg-alt);">
+  <div class="container">
+    <p class="section-heading">Where we work</p>
+    <h2 class="section-title">Our programs and locations</h2>
+    <p class="section-subtitle">Our programs run in three counties, covering both rural and urban communities. Each Hope Centre connects families with social services, legal support, livelihoods training, and spiritual care.</p>
+
+    <div style="margin-top:2rem; overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Program / Centre</th>
+            <th>County</th>
+            <th>Focus area</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hall Mead School</strong></td>
+            <td>Nyeri County</td>
+            <td>Restorative Education</td>
+          </tr>
+          <tr>
+            <td><strong>Karundas Hope Centre</strong></td>
+            <td>Nyeri County</td>
+            <td>Family Strengthening &amp; Justice Advocacy</td>
+          </tr>
+          <tr>
+            <td><strong>Nairobi Hope Centre</strong></td>
+            <td>Nairobi County</td>
+            <td>Family Strengthening &amp; Justice Advocacy</td>
+          </tr>
+          <tr>
+            <td><strong>Nyamarambe Hope Centre</strong></td>
+            <td>Kisii County</td>
+            <td>Family Strengthening &amp; Justice Advocacy</td>
+          </tr>
+          <tr>
+            <td><strong>Nyeri Clinic</strong></td>
+            <td>Nyeri County</td>
+            <td>Community Health Services <span style="display:inline-block; margin-left:0.5rem; font-size:0.78rem; color:var(--color-text-muted);">(in partnership with the Nyeri County Government)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIVITIES ===== -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3rem; align-items:start;">
+      <div>
+        <p class="section-heading" style="text-align:left;">What we do</p>
+        <h2 class="section-title" style="text-align:left;">Our activities across all locations</h2>
+        <p class="card-text" style="margin-top:0.5rem;">Across all our locations, we carry out the following activities to bring healing, justice, and hope to children and families:</p>
+        <ul style="list-style:none; padding:0; margin-top:1.25rem; display:flex; flex-direction:column; gap:0.55rem;">
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Therapeutic care and psychosocial support</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Spiritual discipleship</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Parenting skills training</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Psychosocial education for children and caregivers</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Mentorship skills training</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Community awareness and justice advocacy</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Livelihood training and support</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Capacity building for teachers and church leaders</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Linkages and partnerships with government and other organisations</li>
+          <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Partial education support for children in the community</li>
+        </ul>
+      </div>
+
+      <!-- MDT -->
+      <div>
+        <p class="section-heading" style="text-align:left;">Our team</p>
+        <h2 class="section-title" style="text-align:left;">Multi-disciplinary approach</h2>
+        <p class="card-text" style="margin-top:0.5rem; margin-bottom:1.5rem;">KAI-K employs social workers, teachers, psychologists, lawyers, and spiritual leads. These staff work together to make sure each child receives care across legal, psychological, educational, and spiritual areas.</p>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div style="padding:1.25rem 1.5rem; background:var(--color-bg-alt); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:0.92rem; color:var(--color-text-dark); margin-bottom:0.3rem;"><i class="fa-solid fa-gavel" style="color:var(--color-primary); margin-right:0.5rem;"></i>Lawyers</div>
+            <p style="font-size:0.88rem; color:var(--color-text-muted); margin:0;">Provide legal representation for children in civil and criminal abuse cases.</p>
+          </div>
+          <div style="padding:1.25rem 1.5rem; background:var(--color-bg-alt); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:0.92rem; color:var(--color-text-dark); margin-bottom:0.3rem;"><i class="fa-solid fa-brain" style="color:var(--color-primary); margin-right:0.5rem;"></i>Psychologists</div>
+            <p style="font-size:0.88rem; color:var(--color-text-muted); margin:0;">Help children process trauma and prepare to give testimony in court, using the KAI toolkit.</p>
+          </div>
+          <div style="padding:1.25rem 1.5rem; background:var(--color-bg-alt); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:0.92rem; color:var(--color-text-dark); margin-bottom:0.3rem;"><i class="fa-solid fa-people-group" style="color:var(--color-primary); margin-right:0.5rem;"></i>Social Workers</div>
+            <p style="font-size:0.88rem; color:var(--color-text-muted); margin:0;">Support children and families through the justice process and work to ensure the child&rsquo;s ongoing safety.</p>
+          </div>
+          <div style="padding:1.25rem 1.5rem; background:var(--color-bg-alt); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:0.92rem; color:var(--color-text-dark); margin-bottom:0.3rem;"><i class="fa-solid fa-cross" style="color:var(--color-primary); margin-right:0.5rem;"></i>Spiritual Leads</div>
+            <p style="font-size:0.88rem; color:var(--color-text-muted); margin:0;">Provide faith-based discipleship and support spiritual formation as part of the healing process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHOTO STORY ===== -->
+{% if photos %}
+<section class="section" style="background:#fff; padding-bottom:0;">
+  <div class="container">
+    <p class="section-heading">Programs in action</p>
+    <h2 class="section-title">Moments from our centres</h2>
+    <p class="section-subtitle">A look at what happens day to day across our locations in Kenya.</p>
+  </div>
+</section>
+<section style="background:#fff; padding:2rem 2rem 4rem;">
+  <div class="container">
+    <div class="photo-story-grid">
+      {% for photo in photos %}
+      <div class="photo-story-item">
+        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" loading="lazy">
+        {% if photo.caption %}<p class="photo-story-caption">{{ photo.caption }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="{% url 'gallery' %}" class="btn-secondary btn-secondary--dark">View full gallery <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== SAFEGUARDING ===== -->
+<section class="section" style="background:var(--color-bg-alt); padding:2rem 2rem;">
+  <div class="container">
+    <div class="safeguard-box">
+      <h3 class="section-title" style="margin-bottom:0.5rem;">Safeguarding</h3>
+      <p class="section-subtitle" style="margin-bottom:0;">We are committed to safe spaces, strong boundaries, and robust protection policies for every child in our care.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h3 class="section-title">Partner with us</h3>
+    <p class="section-subtitle">Your support &mdash; financial, professional, or in prayer &mdash; makes this work possible.</p>
+    <div class="cta-buttons">
+      <!-- DONATE BUTTON – re-enable when payment is ready
+      <a href="{{ site.donate_url }}" class="btn-primary" target="_blank" rel="noopener">Donate</a>
+      -->
+      <a href="{% url 'get_involved' %}" class="btn-secondary btn-secondary--dark">Get involved</a>
+      <a href="{% url 'contact' %}" class="btn-secondary btn-secondary--dark">Contact us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

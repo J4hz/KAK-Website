@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Impact – {{ site.org_name }}{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_impact'); background-size:cover; background-position:center;">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">Our impact</h1>
+    <p class="hero-subtitle">Real numbers. Real lives. Real transformation in Kenya.</p>
+  </div>
+</section>
+
+{% if stats %}
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <p class="section-heading">Impact</p>
+    <h2 class="section-title">Numbers tell the story</h2>
+    <p class="section-subtitle">This is what we have accomplished together</p>
+    <div class="stats-layout">
+      <div class="stats-video-placeholder">
+        <i class="fa-regular fa-circle-play" style="font-size:3rem;"></i>
+      </div>
+      <div class="stats-list">
+        {% for stat in stats %}
+        <div>
+          <div class="stat-number">{{ stat.value }}{{ stat.suffix }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if testimonials %}
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <p class="section-heading">Testimonials</p>
+    <h2 class="section-title">Real voices</h2>
+    <p class="section-subtitle">Listen to those we serve</p>
+    <div class="testimonials-grid">
+      {% for t in testimonials %}
+      <article class="testimonial-card">
+        <div class="testimonial-quote-icon">&ldquo;</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">&ldquo;{{ t.quote }}&rdquo;</p>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar">
+            {% if t.photo %}<img src="{{ t.photo.url }}" alt="{{ t.name }}">
+            {% else %}<i class="fa-solid fa-user"></i>{% endif %}
+          </div>
+          <div>
+            <div class="testimonial-author">{{ t.name }}</div>
+            <div class="testimonial-role">{{ t.role }}</div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== REAL STORIES ===== -->
+<section class="section" style="background:var(--color-bg-alt);">
+  <div class="container">
+    <p class="section-heading">From the field</p>
+    <h2 class="section-title">Stories of change</h2>
+    <p class="section-subtitle">These are real lives touched by KAI-K &mdash; names changed to protect privacy.</p>
+    <div class="testimonials-grid" style="margin-top:2rem;">
+      <article class="testimonial-card" style="padding:2rem;">
+        <div class="testimonial-quote-icon">&ldquo;</div>
+        <p style="font-size:0.78rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">Linnet&rsquo;s Story</p>
+        <p class="testimonial-text" style="font-size:0.95rem; line-height:1.75;">Linnet came to KAI through a local health clinic after she and her family experienced trauma. KAI enrolled Linnet, her younger sister, and her mother in the program for emotional support. Linnet joined a KAI school and went on to graduate with excellent final exam results. Her story shows what becomes possible when a child receives consistent care and support.</p>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <div class="testimonial-author">Linnet</div>
+            <div class="testimonial-role">Name changed to protect privacy</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card" style="padding:2rem;">
+        <div class="testimonial-quote-icon">&ldquo;</div>
+        <p style="font-size:0.78rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">Ivy&rsquo;s Story</p>
+        <p class="testimonial-text" style="font-size:0.95rem; line-height:1.75;">Ivy, age 14, has lived with the effects of abandonment since birth. Neglect left her guarded and avoidant. Through KAI-K&rsquo;s care, she has grown in self-awareness and has started to form healthy connections with others. KAI-K works with children like Ivy to help them rebuild trust and find their footing in family and community.</p>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <div class="testimonial-author">Ivy, age 14</div>
+            <div class="testimonial-role">Name changed to protect privacy</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% if stories %}
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <p class="section-heading">News &amp; stories</p>
+    <h2 class="section-title">More from the field</h2>
+    <div class="news-grid">
+      {% for story in stories %}
+      <article class="news-card">
+        {% if story.image %}
+        <div class="news-card__img">
+          <img src="{{ story.image.url }}" alt="{{ story.title }}">
+        </div>
+        {% endif %}
+        <div class="news-card__body">
+          <p class="news-card__date"><i class="fa-regular fa-calendar"></i> {{ story.published_date|date:"j F Y" }}</p>
+          <h3 class="news-card__title"><a href="{% url 'news_detail' story.slug %}">{{ story.title }}</a></h3>
+          {% if story.excerpt %}<p class="news-card__excerpt">{{ story.excerpt|truncatewords:20 }}</p>{% endif %}
+          <a href="{% url 'news_detail' story.slug %}" class="news-card__link">Read more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+<section class="cta-section">
+  <div class="container">
+    <h3 class="section-title">Be part of this story</h3>
+    <p class="section-subtitle">Your support writes the next chapter for a child in Kenya.</p>
+    <div class="cta-buttons">
+      <!-- DONATE BUTTON – re-enable when payment is ready
+      <a href="{{ site.donate_url }}" class="btn-primary" target="_blank" rel="noopener">Donate now</a>
+      -->
+      <a href="{% url 'get_involved' %}" class="btn-secondary btn-secondary--dark">Get involved</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

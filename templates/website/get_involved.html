@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact – {{ site.org_name }}{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_contact'); background-size:cover; background-position:center;">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">Get in touch</h1>
+    <p class="hero-subtitle">We would love to hear from you. Find us at our centres across Nairobi, Nyeri, and Kisii counties.</p>
+  </div>
+</section>
+
+<!-- ===== MAP + CONTACT ===== -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="contact-map-grid">
+
+      <!-- LEFT: Map + Locations -->
+      <div>
+        <p class="section-heading" style="text-align:left;">Where we are</p>
+        <h2 style="margin-bottom:1.25rem;">Our locations</h2>
+
+        <div class="map-embed" style="margin-bottom:1.75rem;">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=34.0%2C-1.5%2C37.6%2C0.3&amp;layer=mapnik"
+            width="100%" height="380" style="border:0; border-radius:var(--radius);"
+            loading="lazy" title="KAI-K locations in Kenya"></iframe>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="location-card">
+            <div class="location-card__badge">Nairobi County</div>
+            <div class="location-card__name">Nairobi Hope Centre</div>
+            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
+          </div>
+          <div class="location-card">
+            <div class="location-card__badge">Nyeri County</div>
+            <div class="location-card__name">Karundas Hope Centre</div>
+            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
+          </div>
+          <div class="location-card">
+            <div class="location-card__badge">Nyeri County</div>
+            <div class="location-card__name">Hall Mead School</div>
+            <div class="location-card__focus">Restorative Education</div>
+          </div>
+          <div class="location-card">
+            <div class="location-card__badge">Nyeri County</div>
+            <div class="location-card__name">Nyeri Clinic</div>
+            <div class="location-card__focus">Community Health Services &mdash; in partnership with Nyeri County Government</div>
+          </div>
+          <div class="location-card">
+            <div class="location-card__badge">Kisii County</div>
+            <div class="location-card__name">Nyamarambe Hope Centre</div>
+            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact info + Form -->
+      <div>
+        <p class="section-heading" style="text-align:left;">Reach out</p>
+        <h2 style="margin-bottom:0.5rem;">Send us a message</h2>
+        <p style="font-size:0.9rem; color:var(--color-text-muted); margin-bottom:1.75rem;">We aim to respond within 2 business days.</p>
+
+        {% if site.email %}
+        <div class="contact-item" style="margin-bottom:0.75rem;">
+          <i class="fa-solid fa-envelope"></i>
+          <div><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+        </div>
+        {% endif %}
+        {% if site.phone %}
+        <div class="contact-item" style="margin-bottom:0.75rem;">
+          <i class="fa-solid fa-phone"></i>
+          <div>{{ site.phone }}</div>
+        </div>
+        {% endif %}
+        {% if site.address %}
+        <div class="contact-item" style="margin-bottom:1.75rem;">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>{{ site.address }}</div>
+        </div>
+        {% endif %}
+
+        {% if messages %}{% for msg in messages %}
+        <div class="alert alert--{{ msg.tags }}" style="margin-bottom:1rem;">{{ msg }}</div>
+        {% endfor %}{% endif %}
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group {% if form.name.errors %}form-group--error{% endif %}">
+              <label class="form-label" for="{{ form.name.id_for_label }}">{{ form.name.label }} *</label>
+              {{ form.name }}
+              {% if form.name.errors %}<ul class="form-errors">{% for e in form.name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+            <div class="form-group {% if form.email.errors %}form-group--error{% endif %}">
+              <label class="form-label" for="{{ form.email.id_for_label }}">{{ form.email.label }} *</label>
+              {{ form.email }}
+              {% if form.email.errors %}<ul class="form-errors">{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+          </div>
+          {% for field in form %}
+          {% if field.name != 'name' and field.name != 'email' %}
+          <div class="form-group {% if field.errors %}form-group--error{% endif %}">
+            <label class="form-label" for="{{ field.id_for_label }}">
+              {{ field.label }}{% if field.field.required %} *{% endif %}
+            </label>
+            {{ field }}
+            {% if field.errors %}<ul class="form-errors">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+          </div>
+          {% endif %}
+          {% endfor %}
+          <button type="submit" class="btn-primary">
+            <i class="fa-solid fa-paper-plane"></i> Send message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOLUNTEER ===== -->
+<section class="section" style="background:var(--color-bg-alt);">
+  <div class="container">
+    <div class="involvement-row">
+      <div class="involvement-icon"><i class="fa-solid fa-people-group"></i></div>
+      <div>
+        <h2>Volunteer</h2>
+        {% if site.volunteer_info %}
+        <div class="prose" style="margin-bottom:1rem;">{{ site.volunteer_info|linebreaks }}</div>
+        {% else %}
+        <p class="involvement-lead">We welcome volunteers with skills in education, healthcare, counselling, legal services, and administration across our locations in Nairobi, Nyeri, and Kisii counties.</p>
+        {% endif %}
+        <a href="mailto:{{ site.email }}" class="btn-primary">Express your interest</a>
+      </div>
+    </div>
+
+    <div class="involvement-row" style="margin-bottom:0;">
+      <div class="involvement-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div>
+        <h2>Partner with us</h2>
+        <p class="involvement-lead">Is your organisation looking to partner with a credible, faith-based NGO with deep roots in the Kenyan community? We are open to institutional partnerships, church collaborations, and corporate CSR programmes.</p>
+        <a href="mailto:{{ site.email }}" class="btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

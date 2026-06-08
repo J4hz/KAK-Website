@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} – {{ site.org_name }}{% endblock %}
+{% block meta_description %}{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.body|truncatewords:25 }}{% endif %}{% endblock %}
+
+{% block content %}
+
+<div class="post-header {% if post.image %}post-header--image{% endif %}"
+     {% if post.image %}style="background-image:url('{{ post.image.url }}');"{% endif %}>
+  {% if post.image %}<div class="post-header__overlay"></div>{% endif %}
+  <div class="post-header__inner">
+    <a href="{% url 'news_list' %}" class="breadcrumb">
+      <i class="fa-solid fa-arrow-left"></i> All stories
+    </a>
+    <p style="font-size:0.85rem; color:{% if post.image %}rgba(255,255,255,.7){% else %}var(--color-text-muted){% endif %}; margin:0.5rem 0;">
+      <i class="fa-regular fa-calendar"></i> {{ post.published_date|date:"j F Y" }}
+    </p>
+    <h1>{{ post.title }}</h1>
+  </div>
+</div>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="post-layout">
+      <article>
+        {% if post.excerpt %}
+        <p class="post-lead">{{ post.excerpt }}</p>
+        {% endif %}
+        <div class="prose">{{ post.body|linebreaks }}</div>
+      </article>
+
+      <aside>
+        <div class="sidebar-box">
+          <h3>Support our work</h3>
+          <p>Your generosity directly funds programs like the ones described in this story.</p>
+          <!-- DONATE BUTTON – re-enable when payment is ready
+          <a href="{{ site.donate_url }}" class="btn-primary" style="width:100%; justify-content:center; margin-bottom:0.75rem;" target="_blank" rel="noopener">
+            <i class="fa-solid fa-hand-holding-heart"></i> Donate now
+          </a>
+          -->
+          <a href="{% url 'get_involved' %}" class="btn-secondary btn-secondary--dark" style="width:100%; justify-content:center;">
+            Volunteer
+          </a>
+        </div>
+
+        {% if related %}
+        <div class="sidebar-box" style="margin-top:1.5rem;">
+          <h3>More stories</h3>
+          <ul class="related-list">
+            {% for r in related %}
+            <li>
+              <a href="{% url 'news_detail' r.slug %}">{{ r.title }}</a>
+              <span>{{ r.published_date|date:"j M Y" }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

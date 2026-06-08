@@ -1,0 +1,220 @@
+[
+  {
+    "model": "website.sitesettings",
+    "pk": 1,
+    "fields": {
+      "org_name": "Kids Alive International Kenya",
+      "tagline": "Justice that Heals | Bonds that Mend",
+      "logo": "branding/Kids_alive_logo.jpg",
+      "favicon": null,
+      "mission_statement": "Inspired by Isaiah 1:17, our mission is to serve vulnerable children by constantly learning better ways to meet their needs, earnestly seeking justice for them, empowering them for a healthy future, and advocating for community change.",
+      "vision_statement": "Every child we serve will enjoy a vibrant, life-changing relationship with God, experience emotional and physical well-being, be equipped for a life of independence and service, and live life in family and community, free of fear and violence.",
+      "about_story": "Kids Alive International Kenya (KAI-K) is a non-profit, faith-based organisation that serves vulnerable children and families across Kenya. We are part of the global Kids Alive International family, which was founded in 1916 and currently works in over eight countries.\n\nKenya has many social challenges. Children face risks including child labour, sexual abuse, and neglect. KAI-K has been working in Kenyan communities for over 20 years, running programs that support children and families to be safe, healthy, and hopeful.\n\nOur approach brings together faith and evidence-based practice. We care for the whole person: body, mind, and spirit.",
+      "about_story_image": null,
+      "value_1_title": "Faith",
+      "value_1_text": "We are rooted in faith and believe every child is cherished by God, made in His image, and worthy of love and healing.",
+      "value_1_icon": "fa-solid fa-cross",
+      "value_2_title": "Integrity",
+      "value_2_text": "We hold ourselves accountable to the children, families, and communities we serve — and to God.",
+      "value_2_icon": "fa-solid fa-shield-halved",
+      "value_3_title": "Justice",
+      "value_3_text": "We seek justice for every child — holding offenders accountable and advocating for better laws and systems.",
+      "value_3_icon": "fa-solid fa-scale-balanced",
+      "phone": "+254 700 000 000",
+      "email": "contact@kidsalive.org",
+      "address": "Nairobi, Kenya",
+      "map_embed_url": "",
+      "donate_url": "#",
+      "volunteer_info": "We welcome volunteers with skills in education, healthcare, counselling, legal services, and administration. Our teams are multi-disciplinary and work across Nairobi, Nyeri, and Kisii counties. Short-term and long-term placements are available.",
+      "facebook_url": "https://facebook.com/yourpage",
+      "twitter_url": "https://twitter.com/yourpage",
+      "instagram_url": "https://instagram.com/yourpage",
+      "youtube_url": "https://youtube.com/@yourpage",
+      "linkedin_url": "https://linkedin.com/company/yourpage",
+      "footer_tagline": "We go where others won’t. We do what others don’t. Serving vulnerable children and families across Kenya for over 20 years.",
+      "copyright_text": "© 2025 Kids Alive International Kenya. All rights reserved."
+    }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 1,
+    "fields": { "label": "Our Story", "url": "/", "order": 1, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 2,
+    "fields": { "label": "About Us", "url": "/about/", "order": 2, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 3,
+    "fields": { "label": "Programs", "url": "/programs/", "order": 3, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 4,
+    "fields": { "label": "Impact", "url": "/impact/", "order": 4, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 8,
+    "fields": { "label": "Gallery", "url": "/gallery/", "order": 45, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 5,
+    "fields": { "label": "News", "url": "/news/", "order": 5, "is_external": false, "is_active": false }
+  },
+  {
+    "model": "website.navitem",
+    "pk": 6,
+    "fields": { "label": "Contact", "url": "/get-involved/", "order": 50, "is_external": false, "is_active": true }
+  },
+  {
+    "model": "website.herosection",
+    "pk": 1,
+    "fields": {
+      "headline": "Restoring hope for children and families in Kenya",
+      "subheadline": "Your gift helps children stay in school, safe, and well nourished so they can heal and thrive.",
+      "background_image": "hero/Nexus_Jan_8th_2025-1.jpg",
+      "background_video_url": "",
+      "primary_cta_text": "Donate now",
+      "primary_cta_url": "#",
+      "secondary_cta_text": "See our impact",
+      "secondary_cta_url": "/about/",
+      "is_active": true,
+      "overlay_opacity": "0.45"
+    }
+  },
+  {
+    "model": "website.program",
+    "pk": 1,
+    "fields": {
+      "name": "Restorative Education",
+      "slug": "restorative-education",
+      "tagline": "Safe, healing environments where children learn and grow",
+      "description": "We run education and training programs in settings that support healing while children learn. Hall Mead School in Nyeri County provides a caring environment that supports children's academic, social, spiritual, and physical development.",
+      "icon": "fa-solid fa-graduation-cap",
+      "image": null,
+      "cta_text": "Learn More",
+      "cta_url": "/programs/",
+      "is_featured": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "website.program",
+    "pk": 2,
+    "fields": {
+      "name": "Family Strengthening",
+      "slug": "family-strengthening",
+      "tagline": "Empowering families to protect and nurture their children",
+      "description": "We work with families to reduce the risks they face and help them grow stronger. Through our Hope Centres in Nairobi, Karundas, and Nyamarambe, we provide parenting support, psychosocial education, livelihood training, and mentorship.",
+      "icon": "fa-solid fa-people-roof",
+      "image": null,
+      "cta_text": "Learn More",
+      "cta_url": "/programs/",
+      "is_featured": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "website.program",
+    "pk": 3,
+    "fields": {
+      "name": "Protective Care",
+      "slug": "protective-care",
+      "tagline": "Temporary safety and healing for children who cannot stay home",
+      "description": "When a child has been abused or neglected and cannot safely stay at home, we provide temporary care. Our staff work to meet each child's needs for health, safety, and emotional healing, with the goal of returning every child to a safe family environment.",
+      "icon": "fa-solid fa-shield-halved",
+      "image": null,
+      "cta_text": "Learn More",
+      "cta_url": "/programs/",
+      "is_featured": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "website.program",
+    "pk": 4,
+    "fields": {
+      "name": "Justice Advocacy",
+      "slug": "justice-advocacy",
+      "tagline": "Walking with children and families through the legal process",
+      "description": "We support children who have experienced abuse to access justice. Our teams include lawyers, psychologists, social workers, and spiritual leads who work together to walk alongside the child and family through the legal process and advocate for better laws and systems.",
+      "icon": "fa-solid fa-scale-balanced",
+      "image": null,
+      "cta_text": "Learn More",
+      "cta_url": "/programs/",
+      "is_featured": true,
+      "order": 4
+    }
+  },
+  {
+    "model": "website.program",
+    "pk": 5,
+    "fields": {
+      "name": "Community Health",
+      "slug": "community-health",
+      "tagline": "Medical services for the local community in Nyeri County",
+      "description": "KAI-K owns and operates a clinic in Nyeri County that provides medical services to the local community, in partnership with the Nyeri County Government.",
+      "icon": "fa-solid fa-kit-medical",
+      "image": null,
+      "cta_text": "Learn More",
+      "cta_url": "/programs/",
+      "is_featured": false,
+      "order": 5
+    }
+  },
+  {
+    "model": "website.impactstat",
+    "pk": 1,
+    "fields": { "label": "Children reached in Kenya", "value": "700", "suffix": "+", "icon": "fa-solid fa-children", "order": 1 }
+  },
+  {
+    "model": "website.impactstat",
+    "pk": 2,
+    "fields": { "label": "Years serving Kenya", "value": "20", "suffix": "+", "icon": "fa-solid fa-calendar-check", "order": 2 }
+  },
+  {
+    "model": "website.impactstat",
+    "pk": 3,
+    "fields": { "label": "Counties of operation", "value": "3", "suffix": "", "icon": "fa-solid fa-map-location-dot", "order": 3 }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 1,
+    "fields": {
+      "name": "Mary Otieno",
+      "role": "Parent, Nairobi",
+      "quote": "My daughter got a scholarship from Kids Alive. She finished high school and is now in university studying engineering.",
+      "photo": null,
+      "is_featured": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 2,
+    "fields": {
+      "name": "David Mwangi",
+      "role": "Former Student",
+      "quote": "I received daily meals and school supplies from Kids Alive. Now I want to give back and help others like me.",
+      "photo": null,
+      "is_featured": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "website.testimonial",
+    "pk": 3,
+    "fields": {
+      "name": "Grace Kamau",
+      "role": "Community Member",
+      "quote": "Thanks to Kids Alive protection services, my children are safe. I do not know what I would have done without them.",
+      "photo": null,
+      "is_featured": true,
+      "order": 3
+    }
+  }
+]

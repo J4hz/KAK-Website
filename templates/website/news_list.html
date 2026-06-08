@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}News &amp; Stories – {{ site.org_name }}{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_impact'); background-size:cover; background-position:center;">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">News &amp; stories</h1>
+    <p class="hero-subtitle">Stories of hope and transformation from across Kenya.</p>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    {% if page_obj %}
+    <div class="news-grid">
+      {% for post in page_obj %}
+      <article class="news-card">
+        {% if post.image %}
+        <a href="{% url 'news_detail' post.slug %}" class="news-card__img">
+          <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
+        </a>
+        {% endif %}
+        <div class="news-card__body">
+          <p class="news-card__date"><i class="fa-regular fa-calendar"></i> {{ post.published_date|date:"j F Y" }}</p>
+          <h2 class="news-card__title"><a href="{% url 'news_detail' post.slug %}">{{ post.title }}</a></h2>
+          <p class="news-card__excerpt">
+            {% if post.excerpt %}{{ post.excerpt|truncatewords:28 }}{% else %}{{ post.body|truncatewords:28 }}{% endif %}
+          </p>
+          <a href="{% url 'news_detail' post.slug %}" class="news-card__link">Read more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <nav class="pagination" aria-label="News pagination">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="pagination__btn">
+        <i class="fa-solid fa-chevron-left"></i> Previous
+      </a>
+      {% endif %}
+      <span class="pagination__info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="pagination__btn">
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <p style="text-align:center; color:var(--color-text-muted); padding:4rem 0;">No stories published yet. Check back soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

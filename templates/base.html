@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ site.org_name }} – {{ site.tagline }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ site.tagline }}{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}{{ site.org_name }}{% endblock %}">
+  <meta property="og:type" content="website">
+  {% if site.logo %}<link rel="icon" href="{{ site.logo.url }}">{% endif %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-container">
+    <a href="{% url 'home' %}" class="logo">
+      {% if site.logo %}<img src="{{ site.logo.url }}" alt="{{ site.org_name }}">{% endif %}
+    </a>
+
+    <ul class="nav-links" id="nav-menu">
+      {% for item in nav_items %}
+      <li>
+        <a href="{{ item.url }}"
+           class="{% if request.path == item.url %}active{% endif %}"
+           {% if item.is_external %}target="_blank" rel="noopener"{% endif %}>
+          {{ item.label }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="nav-actions">
+      <!-- DONATE NAV BUTTON – re-enable when payment is ready
+      <a href="{{ site.donate_url }}" class="btn-primary" target="_blank" rel="noopener noreferrer">Donate</a>
+      -->
+    </div>
+
+    <button class="nav-toggle" type="button" id="nav-toggle"
+            aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+{% if messages %}
+<div class="messages-wrap">
+  {% for message in messages %}
+  <div class="alert alert--{{ message.tags }}">
+    {{ message }}
+    <button class="alert__close" aria-label="Dismiss">&times;</button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<main style="padding-top:80px;">{% block content %}{% endblock %}</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="footer-logo-wrap">
+        {% if site.logo %}<img src="{{ site.logo.url }}" alt="{{ site.org_name }}" class="footer-logo">{% endif %}
+        <div class="footer-logo-text">
+          <span class="footer-logo-name">Kids Alive</span>
+          <span class="footer-logo-sub">Kenya</span>
+        </div>
+      </div>
+      <p class="footer-description">{{ site.footer_tagline }}</p>
+      {% if site.email %}
+      <div class="footer-contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      {% endif %}
+      {% if site.phone %}
+      <div class="footer-contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <span>{{ site.phone }}</span>
+      </div>
+      {% endif %}
+      {% if site.address %}
+      <div class="footer-contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>{{ site.address }}</span>
+      </div>
+      {% endif %}
+      <div class="social-links">
+        {% if site.facebook_url %}<a href="{{ site.facebook_url }}" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>{% endif %}
+        {% if site.twitter_url %}<a href="{{ site.twitter_url }}" aria-label="Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+        {% if site.instagram_url %}<a href="{{ site.instagram_url }}" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+        {% if site.linkedin_url %}<a href="{{ site.linkedin_url }}" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
+        {% if site.youtube_url %}<a href="{{ site.youtube_url }}" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>{% endif %}
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Programs</h3>
+      <ul>
+        <li><a href="{% url 'programs' %}">Education</a></li>
+        <li><a href="{% url 'programs' %}">Support services</a></li>
+        <li><a href="{% url 'programs' %}">Protection</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Impact</h3>
+      <ul>
+        <li><a href="{% url 'news_list' %}">Our stories</a></li>
+        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'get_involved' %}">Get involved</a></li>
+        <li><a href="{% url 'impact' %}">Testimonials</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Organisation</h3>
+      <ul>
+        <li><a href="{% url 'about' %}">About us</a></li>
+        <li><a href="{% url 'about' %}">Our team</a></li>
+        <li><a href="{% url 'contact' %}">Partner with us</a></li>
+        <!-- DONATE FOOTER LINK – re-enable when payment is ready
+        {% if site.donate_url %}<li><a href="{{ site.donate_url }}" target="_blank" rel="noopener">Donate</a></li>{% endif %}
+        -->
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>{{ site.copyright_text }}</p>
+    <div class="footer-links">
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of service</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/animations.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
