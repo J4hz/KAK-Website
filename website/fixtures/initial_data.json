@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "org_name": "Kids Alive International Kenya",
-      "tagline": "Justice that Heals | Bonds that Mend",
+      "tagline": "Trauma into Triumph | Justice that Heals | Bonds that Mend",
       "logo": "branding/Kids_alive_logo.jpg",
       "favicon": null,
       "mission_statement": "Inspired by Isaiah 1:17, our mission is to serve vulnerable children by constantly learning better ways to meet their needs, earnestly seeking justice for them, empowering them for a healthy future, and advocating for community change.",
@@ -169,7 +169,7 @@
   {
     "model": "website.impactstat",
     "pk": 1,
-    "fields": { "label": "Children reached in Kenya", "value": "700", "suffix": "+", "icon": "fa-solid fa-children", "order": 1 }
+    "fields": { "label": "Children reached in Kenya", "value": "800", "suffix": "+", "icon": "fa-solid fa-children", "order": 1 }
   },
   {
     "model": "website.impactstat",
