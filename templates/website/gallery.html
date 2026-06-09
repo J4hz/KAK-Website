@@ -95,9 +95,11 @@
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.4s ease;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.4s ease;
 }
-.masonry-item:hover img { transform: scale(1.04); }
+.masonry-item img.img-loaded { opacity: 1; }
+.masonry-item:hover img.img-loaded { transform: scale(1.04); }
 .masonry-overlay {
   position: absolute;
   inset: 0;
@@ -290,7 +292,7 @@
            aria-label="View {{ img.caption|default:'gallery image' }}">
         <img src="{{ img.image.url }}"
              alt="{{ img.caption|default:'Kids Alive Kenya' }}"
-             loading="lazy">
+             decoding="async">
         <div class="masonry-overlay">
           <span class="masonry-category">{{ img.category|capfirst }}</span>
           {% if img.caption %}
@@ -365,6 +367,18 @@
 
   var items = Array.from(document.querySelectorAll('.masonry-item'));
   if (!items.length) return;
+
+  // Fade each image in once it has loaded; handle cached images immediately.
+  items.forEach(function (item) {
+    var img = item.querySelector('img');
+    if (!img) return;
+    if (img.complete && img.naturalWidth) {
+      img.classList.add('img-loaded');
+    } else {
+      img.addEventListener('load',  function () { img.classList.add('img-loaded'); });
+      img.addEventListener('error', function () { img.classList.add('img-loaded'); });
+    }
+  });
 
   var lightbox   = document.getElementById('lightbox');
   var lbImg      = document.getElementById('lightbox-img');
