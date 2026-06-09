@@ -6,7 +6,7 @@ from website.models import (
 
 
 class Command(BaseCommand):
-    help = 'Seed initial data for all new content models'
+    help = 'Seed initial data for all new content models (skips any model that already has records)'
 
     def handle(self, *args, **options):
         self._themes()
@@ -17,10 +17,12 @@ class Command(BaseCommand):
         self._activities()
         self._team_roles()
         self._stories()
-        self.stdout.write(self.style.SUCCESS('All content seeded successfully.'))
+        self.stdout.write(self.style.SUCCESS('Seed complete.'))
 
     def _themes(self):
-        Theme.objects.all().delete()
+        if Theme.objects.exists():
+            self.stdout.write('  Themes: already seeded, skipping')
+            return
         Theme.objects.bulk_create([
             Theme(icon='fa-solid fa-trophy', title='Trauma into Triumph', order=1, is_active=True,
                   description=(
@@ -50,7 +52,9 @@ class Command(BaseCommand):
         self.stdout.write('  Themes: %d' % Theme.objects.count())
 
     def _values(self):
-        CoreValue.objects.all().delete()
+        if CoreValue.objects.exists():
+            self.stdout.write('  Core Values: already seeded, skipping')
+            return
         CoreValue.objects.bulk_create([
             CoreValue(icon='fa-solid fa-cross', title='Faith', order=1, is_active=True,
                       description='Rooted in Christian faith and the belief that every child is cherished by God.'),
@@ -68,7 +72,9 @@ class Command(BaseCommand):
         self.stdout.write('  Core Values: %d' % CoreValue.objects.count())
 
     def _accreditations(self):
-        Accreditation.objects.all().delete()
+        if Accreditation.objects.exists():
+            self.stdout.write('  Accreditations: already seeded, skipping')
+            return
         Accreditation.objects.bulk_create([
             Accreditation(icon='fa-solid fa-star', icon_color='#f59e0b',
                           name='Charity Navigator', subtitle='Four-Star Rating', order=1, is_active=True),
@@ -81,7 +87,9 @@ class Command(BaseCommand):
         self.stdout.write('  Accreditations: %d' % Accreditation.objects.count())
 
     def _levels(self):
-        InterventionLevel.objects.all().delete()
+        if InterventionLevel.objects.exists():
+            self.stdout.write('  Intervention Levels: already seeded, skipping')
+            return
         InterventionLevel.objects.bulk_create([
             InterventionLevel(icon='fa-solid fa-graduation-cap', title='Restorative Education',
                               order=1, is_active=True, location='Nyeri County',
@@ -136,7 +144,9 @@ class Command(BaseCommand):
         self.stdout.write('  Intervention Levels: %d' % InterventionLevel.objects.count())
 
     def _locations(self):
-        Location.objects.all().delete()
+        if Location.objects.exists():
+            self.stdout.write('  Locations: already seeded, skipping')
+            return
         Location.objects.bulk_create([
             Location(badge='Nairobi County', name='Nairobi Hope Centre',
                      focus='Family Strengthening & Justice Advocacy', order=1, is_active=True),
@@ -153,7 +163,9 @@ class Command(BaseCommand):
         self.stdout.write('  Locations: %d' % Location.objects.count())
 
     def _activities(self):
-        Activity.objects.all().delete()
+        if Activity.objects.exists():
+            self.stdout.write('  Activities: already seeded, skipping')
+            return
         Activity.objects.bulk_create([
             Activity(text='Therapeutic care and psychosocial support', order=1, is_active=True),
             Activity(text='Spiritual discipleship', order=2, is_active=True),
@@ -170,7 +182,9 @@ class Command(BaseCommand):
         self.stdout.write('  Activities: %d' % Activity.objects.count())
 
     def _team_roles(self):
-        TeamRole.objects.all().delete()
+        if TeamRole.objects.exists():
+            self.stdout.write('  Team Roles: already seeded, skipping')
+            return
         TeamRole.objects.bulk_create([
             TeamRole(icon='fa-solid fa-gavel', title='Lawyers', order=1, is_active=True,
                      description='Provide legal representation for children in civil and criminal abuse cases.'),
@@ -186,7 +200,9 @@ class Command(BaseCommand):
         self.stdout.write('  Team Roles: %d' % TeamRole.objects.count())
 
     def _stories(self):
-        ImpactStory.objects.all().delete()
+        if ImpactStory.objects.exists():
+            self.stdout.write('  Impact Stories: already seeded, skipping')
+            return
         ImpactStory.objects.bulk_create([
             ImpactStory(
                 label="Linnet's Story",
