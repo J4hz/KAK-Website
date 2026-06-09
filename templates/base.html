@@ -8,7 +8,7 @@
   <meta name="description" content="{% block meta_description %}{{ site.tagline }}{% endblock %}">
   <meta property="og:title" content="{% block og_title %}{{ site.org_name }}{% endblock %}">
   <meta property="og:type" content="website">
-  {% if site.logo %}<link rel="icon" href="{{ site.logo.url }}">{% endif %}
+  <link rel="icon" href="{% static 'images/kaik_logo.png' %}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
 <nav class="site-nav">
   <div class="nav-container">
     <a href="{% url 'home' %}" class="logo">
-      {% if site.logo %}<img src="{{ site.logo.url }}" alt="{{ site.org_name }}">{% endif %}
+      <img src="{% static 'images/kaik_logo.png' %}" alt="{{ site.org_name }}">
     </a>
 
     <ul class="nav-links" id="nav-menu">
@@ -70,7 +70,7 @@
   <div class="footer-content">
     <div class="footer-section">
       <div class="footer-logo-wrap">
-        {% if site.logo %}<img src="{{ site.logo.url }}" alt="{{ site.org_name }}" class="footer-logo">{% endif %}
+        <img src="{% static 'images/kaik_logo.png' %}" alt="{{ site.org_name }}" class="footer-logo">
       </div>
       <p class="footer-description">{{ site.footer_tagline }}</p>
       {% if site.email %}
