@@ -8,8 +8,8 @@
 <section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_impact'); background-size:cover; background-position:center;">
   <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <h1 class="hero-title">Our impact</h1>
-    <p class="hero-subtitle">Real numbers. Real lives. Real transformation in Kenya.</p>
+    <h1 class="hero-title">{{ site.impact_hero_title }}</h1>
+    <p class="hero-subtitle">{{ site.impact_hero_subtitle }}</p>
   </div>
 </section>
 
@@ -66,39 +66,31 @@
 {% endif %}
 
 <!-- ===== REAL STORIES ===== -->
+{% if impact_stories %}
 <section class="section" style="background:var(--color-bg-alt);">
   <div class="container">
     <p class="section-heading">From the field</p>
     <h2 class="section-title">Stories of change</h2>
-    <p class="section-subtitle">These are real lives touched by KAI-K &mdash; names changed to protect privacy.</p>
+    <p class="section-subtitle">{{ site.impact_stories_subtitle }}</p>
     <div class="testimonials-grid" style="margin-top:2rem;">
+      {% for story in impact_stories %}
       <article class="testimonial-card" style="padding:2rem;">
         <div class="testimonial-quote-icon">&ldquo;</div>
-        <p style="font-size:0.78rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">Linnet&rsquo;s Story</p>
-        <p class="testimonial-text" style="font-size:0.95rem; line-height:1.75;">Linnet came to KAI through a local health clinic after she and her family experienced trauma. KAI enrolled Linnet, her younger sister, and her mother in the program for emotional support. Linnet joined a KAI school and went on to graduate with excellent final exam results. Her story shows what becomes possible when a child receives consistent care and support.</p>
+        <p style="font-size:0.78rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">{{ story.label }}</p>
+        <p class="testimonial-text" style="font-size:0.95rem; line-height:1.75;">{{ story.body }}</p>
         <div class="testimonial-author-row">
           <div class="testimonial-avatar"><i class="fa-solid fa-user"></i></div>
           <div>
-            <div class="testimonial-author">Linnet</div>
-            <div class="testimonial-role">Name changed to protect privacy</div>
+            {% if story.person_name %}<div class="testimonial-author">{{ story.person_name }}</div>{% endif %}
+            {% if story.name_note %}<div class="testimonial-role">{{ story.name_note }}</div>{% endif %}
           </div>
         </div>
       </article>
-      <article class="testimonial-card" style="padding:2rem;">
-        <div class="testimonial-quote-icon">&ldquo;</div>
-        <p style="font-size:0.78rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem;">Ivy&rsquo;s Story</p>
-        <p class="testimonial-text" style="font-size:0.95rem; line-height:1.75;">Ivy, age 14, has lived with the effects of abandonment since birth. Neglect left her guarded and avoidant. Through KAI-K&rsquo;s care, she has grown in self-awareness and has started to form healthy connections with others. KAI-K works with children like Ivy to help them rebuild trust and find their footing in family and community.</p>
-        <div class="testimonial-author-row">
-          <div class="testimonial-avatar"><i class="fa-solid fa-user"></i></div>
-          <div>
-            <div class="testimonial-author">Ivy, age 14</div>
-            <div class="testimonial-role">Name changed to protect privacy</div>
-          </div>
-        </div>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>
+{% endif %}
 
 {% if stories %}
 <section class="section" style="background:#fff;">
@@ -126,11 +118,10 @@
 </section>
 {% endif %}
 
-
 <section class="cta-section">
   <div class="container">
-    <h3 class="section-title">Be part of this story</h3>
-    <p class="section-subtitle">Your support writes the next chapter for a child in Kenya.</p>
+    <h3 class="section-title">{{ site.impact_cta_heading }}</h3>
+    <p class="section-subtitle">{{ site.impact_cta_body }}</p>
     <div class="cta-buttons">
       <!-- DONATE BUTTON – re-enable when payment is ready
       <a href="{{ site.donate_url }}" class="btn-primary" target="_blank" rel="noopener">Donate now</a>

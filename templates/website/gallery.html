@@ -253,8 +253,8 @@
 <!-- ===== HERO ===== -->
 <section class="gallery-hero">
   <p class="section-heading" style="color:rgba(255,255,255,.5); margin-bottom:0.5rem;">Visual Stories</p>
-  <h1>Gallery</h1>
-  <p>Moments of learning, joy, and transformation from across our programs in Kenya.</p>
+  <h1>{{ site.gallery_hero_title }}</h1>
+  <p>{{ site.gallery_hero_subtitle }}</p>
 </section>
 
 <!-- ===== FILTER BAR ===== -->
@@ -324,8 +324,8 @@
 <!-- ===== CTA ===== -->
 <section class="cta-section" style="background:var(--color-bg-alt);">
   <div class="container">
-    <h3 class="section-title">Help us write more stories like these</h3>
-    <p class="section-subtitle">Every photo tells a story made possible by supporters like you.</p>
+    <h3 class="section-title">{{ site.gallery_cta_heading }}</h3>
+    <p class="section-subtitle">{{ site.gallery_cta_body }}</p>
     <div class="cta-buttons">
       <!-- DONATE BUTTON – re-enable when payment is ready
       <a href="{{ site.donate_url }}" class="btn-primary" target="_blank" rel="noopener">

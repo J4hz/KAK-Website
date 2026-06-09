@@ -71,19 +71,19 @@
   <div class="container">
     <div class="featured-strip-grid">
       <div>
-        <p class="section-heading" style="text-align:left;">Trauma into Triumph | Justice that Heals | Bonds that Mend</p>
-        <h2 class="section-title" style="text-align:left;">Restorative education, family strengthening, protective care, justice advocacy</h2>
+        <p class="section-heading" style="text-align:left;">{{ site.home_strip_tagline }}</p>
+        <h2 class="section-title" style="text-align:left;">{{ site.home_strip_heading }}</h2>
         <p class="section-subtitle" style="text-align:left; max-width:460px; margin-bottom:1.5rem;">
-          KAI-K runs five complementary programs across Nairobi, Nyeri, and Kisii counties &mdash; meeting children where they are and walking with them toward healing and wholeness.
+          {{ site.home_strip_body }}
         </p>
         <a href="{% url 'programs' %}" class="btn-primary">
           Explore our programs <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
       <div class="feature-strip">
-        <p class="section-heading">We do the hard things</p>
+        <p class="section-heading">{{ site.home_feature_heading }}</p>
         <p style="font-size:1.05rem; line-height:1.7;">
-          We go where others won&rsquo;t, and we do what others don&rsquo;t &mdash; hard stories, complex trauma, legal processes, and deep systemic brokenness. Places where others often cannot go.
+          {{ site.home_feature_body }}
         </p>
       </div>
     </div>
@@ -117,17 +117,16 @@
       <div>
         <p class="section-heading" style="text-align:left;">About Kids Alive</p>
         <h2 class="section-title" style="text-align:left; margin-bottom:1.25rem;">
-          We believe every child deserves a future
+          {{ site.home_about_heading }}
         </h2>
         <p style="color:var(--color-text-light); font-size:1.05rem; line-height:1.75; margin-bottom:1.25rem;">
-          Kids Alive Kenya is committed to rescuing, restoring, and raising children who will transform their world.
-          We walk with children and families through the hardest realities — because every child is cherished by God.
+          {{ site.home_about_body }}
         </p>
         <blockquote style="border-left:4px solid var(--color-primary); padding-left:1.25rem; margin-bottom:1.75rem;">
           <p style="font-style:italic; font-size:1rem; color:var(--color-text-dark); margin:0; line-height:1.7;">
-            "Learn to do good. Seek justice. Rebuke the oppressor. Defend the fatherless. Plead for the widow."
+            &ldquo;{{ site.about_scripture_text }}&rdquo;
           </p>
-          <footer style="font-size:0.85rem; color:var(--color-primary); font-weight:600; margin-top:0.5rem;">— Isaiah 1:17</footer>
+          <footer style="font-size:0.85rem; color:var(--color-primary); font-weight:600; margin-top:0.5rem;">&mdash; {{ site.about_scripture_ref }}</footer>
         </blockquote>
         <a href="{% url 'about' %}" class="btn-primary">
           Our story <i class="fa-solid fa-arrow-right"></i>
@@ -139,8 +138,10 @@
         <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=280&fit=crop" alt="Community support" loading="lazy">
         <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=280&fit=crop" alt="Classroom learning" loading="lazy">
         <div class="about-stat-badge">
-          <div class="badge-num">800+</div>
-          <div class="badge-lbl">Children Reached</div>
+          {% if children_stat %}
+          <div class="badge-num">{{ children_stat.value }}{{ children_stat.suffix }}</div>
+          <div class="badge-lbl">{{ children_stat.label }}</div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -180,8 +181,8 @@
 <!-- ===== CTA ===== -->
 <section class="cta-section cta-section--primary">
   <div class="container">
-    <h3 class="section-title">Start making a difference</h3>
-    <p class="section-subtitle">Every contribution transforms a child's life. Choose your way to help today.</p>
+    <h3 class="section-title">{{ site.home_cta_heading }}</h3>
+    <p class="section-subtitle">{{ site.home_cta_body }}</p>
     <div class="cta-buttons">
       <!-- DONATE BUTTON – re-enable when payment is ready
       <a href="{{ site.donate_url }}" class="btn-primary" style="background:#fff;color:var(--color-primary);font-weight:700;">Donate now</a>

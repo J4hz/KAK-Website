@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from .models import (
     HeroSection, Program, ImpactStat, TeamMember, Testimonial,
     NewsPost, GalleryImage, Partner, ContactMessage, SiteSettings,
+    Theme, CoreValue, Accreditation, InterventionLevel, Location,
+    Activity, TeamRole, ImpactStory,
 )
 from .forms import ContactForm
 
@@ -11,7 +13,6 @@ from .forms import ContactForm
 def home(request):
     hero = HeroSection.get()
 
-    # Build hero slides list from all active hero sections
     hero_slides_qs = HeroSection.objects.filter(is_active=True).order_by('pk')
     hero_slides = []
     for slide in hero_slides_qs:
@@ -23,7 +24,6 @@ def home(request):
             'button_secondary': slide.secondary_cta_text,
         })
 
-    # Features from featured programs
     featured_programs = Program.objects.filter(is_featured=True).order_by('order')[:3]
     features = None
     if featured_programs.exists():
@@ -39,6 +39,7 @@ def home(request):
 
     stats = ImpactStat.objects.all().order_by('order')[:4]
     testimonials = Testimonial.objects.filter(is_featured=True).order_by('order')[:3]
+    children_stat = ImpactStat.objects.order_by('order').first()
 
     return render(request, 'website/home.html', {
         'hero': hero,
@@ -46,19 +47,40 @@ def home(request):
         'features': features,
         'stats': stats,
         'testimonials': testimonials,
+        'children_stat': children_stat,
     })
 
 
 def about(request):
     team = TeamMember.objects.filter(is_active=True).order_by('order')
     photos = GalleryImage.objects.all().order_by('order')[:8]
-    return render(request, 'website/about.html', {'team': team, 'photos': photos})
+    themes = Theme.objects.filter(is_active=True).order_by('order')
+    values = CoreValue.objects.filter(is_active=True).order_by('order')
+    accreditations = Accreditation.objects.filter(is_active=True).order_by('order')
+    return render(request, 'website/about.html', {
+        'team': team,
+        'photos': photos,
+        'themes': themes,
+        'values': values,
+        'accreditations': accreditations,
+    })
 
 
 def programs(request):
     all_programs = Program.objects.all().order_by('order')
     photos = GalleryImage.objects.all().order_by('order')[8:14]
-    return render(request, 'website/programs.html', {'programs': all_programs, 'photos': photos})
+    levels = InterventionLevel.objects.filter(is_active=True).order_by('order')
+    locations = Location.objects.filter(is_active=True).order_by('order')
+    activities = Activity.objects.filter(is_active=True).order_by('order')
+    team_roles = TeamRole.objects.filter(is_active=True).order_by('order')
+    return render(request, 'website/programs.html', {
+        'programs': all_programs,
+        'photos': photos,
+        'levels': levels,
+        'locations': locations,
+        'activities': activities,
+        'team_roles': team_roles,
+    })
 
 
 def impact(request):
@@ -66,11 +88,13 @@ def impact(request):
     testimonials = Testimonial.objects.filter(is_featured=True).order_by('order')
     stories = NewsPost.objects.filter(is_published=True, is_featured=True)[:4]
     gallery = GalleryImage.objects.all().order_by('order')
+    impact_stories = ImpactStory.objects.filter(is_active=True).order_by('order')
     return render(request, 'website/impact.html', {
         'stats': stats,
         'testimonials': testimonials,
         'stories': stories,
         'gallery': gallery,
+        'impact_stories': impact_stories,
     })
 
 
@@ -116,7 +140,11 @@ def get_involved(request):
             return redirect('get_involved')
     else:
         form = ContactForm()
-    return render(request, 'website/get_involved.html', {'form': form})
+    locations = Location.objects.filter(is_active=True).order_by('order')
+    return render(request, 'website/get_involved.html', {
+        'form': form,
+        'locations': locations,
+    })
 
 
 def contact(request):

@@ -4,6 +4,8 @@ from .models import (
     SiteSettings, NavItem, HeroSection, Program, ImpactStat,
     TeamMember, Testimonial, NewsPost, GalleryImage, Partner,
     ContactMessage, Page,
+    Theme, CoreValue, Accreditation, InterventionLevel, Location,
+    Activity, TeamRole, ImpactStory,
 )
 
 admin.site.site_header = 'Kids Alive Kenya — Site Admin'
@@ -14,18 +16,102 @@ admin.site.index_title = 'Content Management'
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Organisation', {'fields': ('org_name', 'tagline', 'logo', 'favicon')}),
-        ('Mission & Vision', {'fields': ('mission_statement', 'vision_statement')}),
-        ('About / Our Story', {'fields': ('about_story', 'about_story_image')}),
-        ('Brand Values', {'fields': (
-            'value_1_icon', 'value_1_title', 'value_1_text',
-            'value_2_icon', 'value_2_title', 'value_2_text',
-            'value_3_icon', 'value_3_title', 'value_3_text',
-        )}),
-        ('Contact', {'fields': ('phone', 'email', 'address', 'map_embed_url')}),
-        ('Donate & Volunteer', {'fields': ('donate_url', 'volunteer_info')}),
-        ('Social Links', {'fields': ('facebook_url', 'twitter_url', 'instagram_url', 'youtube_url', 'linkedin_url')}),
-        ('Footer', {'fields': ('footer_tagline', 'copyright_text')}),
+        ('Organisation', {
+            'fields': ('org_name', 'tagline', 'logo', 'favicon', 'mission_statement', 'vision_statement'),
+        }),
+        ('Our Story (About page body)', {
+            'fields': ('about_story', 'about_story_image'),
+        }),
+        ('Contact & Donate', {
+            'fields': ('phone', 'email', 'address', 'map_embed_url', 'donate_url', 'volunteer_info'),
+        }),
+        ('Social Links', {
+            'fields': ('facebook_url', 'twitter_url', 'instagram_url', 'youtube_url', 'linkedin_url'),
+            'classes': ('collapse',),
+        }),
+        ('Footer', {
+            'fields': ('footer_tagline', 'copyright_text'),
+        }),
+
+        # ---- Page content ----
+        ('Home Page', {
+            'fields': (
+                'home_strip_tagline', 'home_strip_heading', 'home_strip_body',
+                'home_feature_heading', 'home_feature_body',
+                'home_about_heading', 'home_about_body',
+                'home_cta_heading', 'home_cta_body',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('About Page — Hero & At a Glance', {
+            'fields': (
+                'about_hero_title', 'about_hero_subtitle',
+                'about_glance_type', 'about_glance_country', 'about_glance_headquarters',
+                'about_glance_areas', 'about_glance_global_parent', 'about_glance_global_presence',
+                'about_glance_children_reached', 'about_glance_scripture',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('About Page — Themes, Mission & Vision', {
+            'fields': (
+                'about_themes_heading', 'about_themes_subtitle',
+                'about_mission_heading', 'about_scripture_text', 'about_scripture_ref',
+                'vision_1', 'vision_2', 'vision_3', 'vision_4',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('About Page — Values & Global Family', {
+            'fields': (
+                'about_values_subtitle',
+                'about_global_heading', 'about_global_body_1', 'about_global_body_2',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('Programs Page', {
+            'fields': (
+                'programs_hero_title', 'programs_hero_subtitle',
+                'programs_levels_subtitle', 'programs_locations_subtitle',
+                'programs_activities_intro',
+                'mdt_intro', 'safeguarding_text',
+                'programs_cta_heading', 'programs_cta_body',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('Get Involved / Contact Page', {
+            'fields': (
+                'get_involved_hero_title', 'get_involved_hero_subtitle',
+                'volunteer_heading',
+                'partner_heading', 'partner_body',
+                'schools_heading', 'schools_body',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('Impact Page', {
+            'fields': (
+                'impact_hero_title', 'impact_hero_subtitle',
+                'impact_stories_subtitle',
+                'impact_cta_heading', 'impact_cta_body',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('Gallery Page', {
+            'fields': (
+                'gallery_hero_title', 'gallery_hero_subtitle',
+                'gallery_cta_heading', 'gallery_cta_body',
+            ),
+            'classes': ('collapse',),
+        }),
+        ('Contact Page', {
+            'fields': ('contact_hero_title', 'contact_hero_subtitle'),
+            'classes': ('collapse',),
+        }),
+        ('News Page', {
+            'fields': (
+                'news_hero_title', 'news_hero_subtitle',
+                'news_sidebar_cta_heading', 'news_sidebar_cta_body',
+            ),
+            'classes': ('collapse',),
+        }),
     )
 
     def has_add_permission(self, request):
@@ -56,6 +142,78 @@ class HeroSectionAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(Theme)
+class ThemeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon_preview', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+    @admin.display(description='Icon')
+    def icon_preview(self, obj):
+        return format_html('<i class="{}"></i> <code>{}</code>', obj.icon, obj.icon)
+
+
+@admin.register(CoreValue)
+class CoreValueAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon_preview', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+    @admin.display(description='Icon')
+    def icon_preview(self, obj):
+        return format_html('<i class="{}"></i> <code>{}</code>', obj.icon, obj.icon)
+
+
+@admin.register(Accreditation)
+class AccreditationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subtitle', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+
+@admin.register(InterventionLevel)
+class InterventionLevelAdmin(admin.ModelAdmin):
+    list_display = ('title', 'location', 'icon_preview', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+    @admin.display(description='Icon')
+    def icon_preview(self, obj):
+        return format_html('<i class="{}"></i> <code>{}</code>', obj.icon, obj.icon)
+
+
+@admin.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'badge', 'focus', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+
+@admin.register(Activity)
+class ActivityAdmin(admin.ModelAdmin):
+    list_display = ('text', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+
+@admin.register(TeamRole)
+class TeamRoleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon_preview', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+
+    @admin.display(description='Icon')
+    def icon_preview(self, obj):
+        return format_html('<i class="{}"></i> <code>{}</code>', obj.icon, obj.icon)
+
+
+@admin.register(ImpactStory)
+class ImpactStoryAdmin(admin.ModelAdmin):
+    list_display = ('label', 'person_name', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
 
 
 @admin.register(Program)

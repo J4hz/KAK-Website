@@ -8,8 +8,8 @@
 <section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_about'); background-size:cover; background-position:center;">
   <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <h1 class="hero-title">We go where others won&rsquo;t.<br>We do what others don&rsquo;t.</h1>
-    <p class="hero-subtitle">Kids Alive International Kenya has served vulnerable children and families across Kenya for over 20 years &mdash; rooted in faith, driven by justice.</p>
+    <h1 class="hero-title">{{ site.about_hero_title }}</h1>
+    <p class="hero-subtitle">{{ site.about_hero_subtitle }}</p>
   </div>
 </section>
 
@@ -26,23 +26,25 @@
       <div style="background:var(--color-bg-alt); border-radius:var(--radius); padding:2rem;">
         <p class="section-heading" style="text-align:left; margin-bottom:1.25rem;">At a Glance</p>
         <table class="info-table">
-          <tr><td class="info-table__label">Type</td><td>Non-profit faith-based NGO</td></tr>
-          <tr><td class="info-table__label">Country</td><td>Kenya</td></tr>
-          <tr><td class="info-table__label">Headquarters</td><td>Nairobi, Kenya</td></tr>
-          <tr><td class="info-table__label">Areas of Operation</td><td>Nairobi&nbsp;| Nyeri&nbsp;| Kisii Counties</td></tr>
-          <tr><td class="info-table__label">Global Parent</td><td>Kids Alive International (founded 1916, USA)</td></tr>
-          <tr><td class="info-table__label">Global Presence</td><td>Active in 8+ countries across Africa, Latin America, Asia and the Middle East</td></tr>
-          <tr><td class="info-table__label">Children Reached</td><td>Over 800 children through KAI-K programs</td></tr>
-          <tr><td class="info-table__label">Scripture</td><td>Isaiah 1:17</td></tr>
+          {% if site.about_glance_type %}<tr><td class="info-table__label">Type</td><td>{{ site.about_glance_type }}</td></tr>{% endif %}
+          {% if site.about_glance_country %}<tr><td class="info-table__label">Country</td><td>{{ site.about_glance_country }}</td></tr>{% endif %}
+          {% if site.about_glance_headquarters %}<tr><td class="info-table__label">Headquarters</td><td>{{ site.about_glance_headquarters }}</td></tr>{% endif %}
+          {% if site.about_glance_areas %}<tr><td class="info-table__label">Areas of Operation</td><td>{{ site.about_glance_areas }}</td></tr>{% endif %}
+          {% if site.about_glance_global_parent %}<tr><td class="info-table__label">Global Parent</td><td>{{ site.about_glance_global_parent }}</td></tr>{% endif %}
+          {% if site.about_glance_global_presence %}<tr><td class="info-table__label">Global Presence</td><td>{{ site.about_glance_global_presence }}</td></tr>{% endif %}
+          {% if site.about_glance_children_reached %}<tr><td class="info-table__label">Children Reached</td><td>{{ site.about_glance_children_reached }}</td></tr>{% endif %}
+          {% if site.about_glance_scripture %}<tr><td class="info-table__label">Scripture</td><td>{{ site.about_glance_scripture }}</td></tr>{% endif %}
         </table>
+        {% if accreditations %}
         <div style="margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid var(--color-border);">
           <p style="font-size:0.78rem; color:var(--color-text-muted); margin-bottom:0.6rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Accreditations</p>
           <div style="display:flex; flex-direction:column; gap:0.4rem;">
-            <span style="font-size:0.88rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-right:0.4rem;"></i>Charity Navigator 4-Star Rating</span>
-            <span style="font-size:0.88rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-right:0.4rem;"></i>GuideStar Platinum Seal</span>
-            <span style="font-size:0.88rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-right:0.4rem;"></i>ECFA Accredited</span>
+            {% for acc in accreditations %}
+            <span style="font-size:0.88rem; color:var(--color-text-dark);"><i class="{{ acc.icon }}" style="color:var(--color-primary); margin-right:0.4rem;"></i>{{ acc.name }}{% if acc.subtitle %} — {{ acc.subtitle }}{% endif %}</span>
+            {% endfor %}
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -76,30 +78,24 @@
 {% endif %}
 
 <!-- ===== OUR THEMES ===== -->
+{% if themes %}
 <section class="section" style="background:var(--color-bg-alt);">
   <div class="container">
     <p class="section-heading">Our themes</p>
-    <h2 class="section-title">Trauma into Triumph. Justice that Heals. Bonds that Mend.</h2>
-    <p class="section-subtitle">Three interlocking convictions that shape everything we do for children and families.</p>
-    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2rem; margin-top:2.5rem;">
+    <h2 class="section-title">{{ site.about_themes_heading }}</h2>
+    <p class="section-subtitle">{{ site.about_themes_subtitle }}</p>
+    <div style="display:grid; grid-template-columns:repeat({{ themes|length }}, 1fr); gap:2rem; margin-top:2.5rem;">
+      {% for theme in themes %}
       <article class="card" style="padding:2rem;">
-        <div class="card-icon" style="font-size:2rem; margin-bottom:1rem;"><i class="fa-solid fa-trophy"></i></div>
-        <h3 class="card-title" style="font-size:1.25rem;">Trauma into Triumph</h3>
-        <p class="card-text">People come to KAI-K after going through traumatic experiences. Through our intervention programs, they are supported to work through what they have been through and move toward victory. The goal is not just survival but triumph, where children and families come out the other side stronger and able to live full, healthy lives.</p>
+        <div class="card-icon" style="font-size:2rem; margin-bottom:1rem;"><i class="{{ theme.icon }}"></i></div>
+        <h3 class="card-title" style="font-size:1.25rem;">{{ theme.title }}</h3>
+        <p class="card-text">{{ theme.description }}</p>
       </article>
-      <article class="card" style="padding:2rem;">
-        <div class="card-icon" style="font-size:2rem; margin-bottom:1rem;"><i class="fa-solid fa-scale-balanced"></i></div>
-        <h3 class="card-title" style="font-size:1.25rem;">Justice that Heals</h3>
-        <p class="card-text">Justice that Heals treats children and families with compassion while holding offenders accountable. It gives survivors a path to heal, strengthens communities, and leads to better outcomes in the legal system. We believe that without justice, healing is delayed or may never fully come.</p>
-      </article>
-      <article class="card" style="padding:2rem;">
-        <div class="card-icon" style="font-size:2rem; margin-bottom:1rem;"><i class="fa-solid fa-heart-pulse"></i></div>
-        <h3 class="card-title" style="font-size:1.25rem;">Bonds that Mend</h3>
-        <p class="card-text">Every child needs a strong bond with a safe, loving, and caring adult. Without safety, children experience trauma. Without love, they form broken identities. Without nurturing, they struggle to grow. We work to build these bonds in every family, classroom, and interaction, because healing starts with connection.</p>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- ===== MISSION & VISION ===== -->
 <section class="section" style="background:#fff;">
@@ -107,12 +103,12 @@
     <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr); gap:2.5rem; align-items:flex-start;">
       <div>
         <p class="section-heading" style="text-align:left;">Our mission</p>
-        <h2 class="section-title" style="text-align:left;">Learn to do good. Seek justice.</h2>
+        <h2 class="section-title" style="text-align:left;">{{ site.about_mission_heading }}</h2>
         <blockquote style="border-left:4px solid var(--color-primary); padding-left:1.25rem; margin-top:1.5rem;">
           <p style="font-style:italic; font-size:1rem; color:var(--color-text-dark); margin:0; line-height:1.7;">
-            &ldquo;Learn to do good. Seek justice. Rebuke the oppressor. Defend the fatherless. Plead for the widow.&rdquo;
+            &ldquo;{{ site.about_scripture_text }}&rdquo;
           </p>
-          <footer style="font-size:0.85rem; color:var(--color-primary); font-weight:600; margin-top:0.5rem;">&mdash; Isaiah 1:17</footer>
+          <footer style="font-size:0.85rem; color:var(--color-primary); font-weight:600; margin-top:0.5rem;">&mdash; {{ site.about_scripture_ref }}</footer>
         </blockquote>
       </div>
       <div>
@@ -125,10 +121,10 @@
         <div>
           <p class="section-heading" style="text-align:left;">Vision &mdash; what we long to see for every child</p>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem;">
-            <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Enjoy a vibrant, life-changing relationship with God.</li>
-            <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Experience emotional and physical well-being.</li>
-            <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Be equipped for a life of independence and service.</li>
-            <li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>Live life in family and community, free of fear and violence.</li>
+            {% if site.vision_1 %}<li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>{{ site.vision_1 }}</li>{% endif %}
+            {% if site.vision_2 %}<li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>{{ site.vision_2 }}</li>{% endif %}
+            {% if site.vision_3 %}<li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>{{ site.vision_3 }}</li>{% endif %}
+            {% if site.vision_4 %}<li style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.95rem; color:var(--color-text-dark);"><i class="fa-solid fa-circle-check" style="color:var(--color-primary); margin-top:0.2rem; flex-shrink:0;"></i>{{ site.vision_4 }}</li>{% endif %}
           </ul>
         </div>
       </div>
@@ -137,45 +133,24 @@
 </section>
 
 <!-- ===== VALUES ===== -->
+{% if values %}
 <section class="section" style="background:var(--color-bg-alt);">
   <div class="container">
     <p class="section-heading">Our values</p>
     <h2 class="section-title">What guides everything we do</h2>
-    <p class="section-subtitle">We believe we are God&rsquo;s children: clean, powerful, a masterpiece, and chosen for a purpose. Every child, parent, and team member we work with is precious to Jesus &mdash; worthy of love, justice, and healing.</p>
+    <p class="section-subtitle">{{ site.about_values_subtitle }}</p>
     <div class="cards-grid" style="margin-top:2rem;">
+      {% for val in values %}
       <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-cross"></i></div>
-        <h3 class="card-title">Faith</h3>
-        <p class="card-text">Rooted in Christian faith and the belief that every child is cherished by God.</p>
+        <div class="card-icon"><i class="{{ val.icon }}"></i></div>
+        <h3 class="card-title">{{ val.title }}</h3>
+        <p class="card-text">{{ val.description }}</p>
       </article>
-      <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3 class="card-title">Integrity</h3>
-        <p class="card-text">Accountable to the children, families, and communities we serve, and to God.</p>
-      </article>
-      <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
-        <h3 class="card-title">Understanding</h3>
-        <p class="card-text">Meeting every child and family where they are, with empathy and evidence-based care.</p>
-      </article>
-      <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-        <h3 class="card-title">Justice</h3>
-        <p class="card-text">Seeking justice for every child &mdash; holding offenders accountable and advocating for systemic change.</p>
-      </article>
-      <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-        <h3 class="card-title">Perseverance</h3>
-        <p class="card-text">We do the hard things. We go where others won&rsquo;t, and we stay as long as it takes.</p>
-      </article>
-      <article class="card" style="padding:1.5rem;">
-        <div class="card-icon"><i class="fa-solid fa-handshake"></i></div>
-        <h3 class="card-title">Mutual Kindness</h3>
-        <p class="card-text">Treating every person with dignity, care, and the love of Christ in all our interactions.</p>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>
+{% endif %}
 
 <!-- ===== GLOBAL AFFILIATION ===== -->
 <section class="section" style="background:#fff;">
@@ -183,36 +158,26 @@
     <div style="display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:3rem; align-items:start;">
       <div>
         <p class="section-heading" style="text-align:left;">Global family</p>
-        <h2 class="section-title" style="text-align:left;">Part of something bigger</h2>
-        <p class="card-text" style="margin-top:1rem;">Kids Alive International Kenya is part of Kids Alive International, a Christian non-profit founded in 1916 by missionaries Leslie and Ava Anglin. What began in Shantung Province, China, has grown into work spanning countries in Central America, South America, Africa, the Middle East, and Asia.</p>
-        <p class="card-text" style="margin-top:0.75rem;">Being part of this global family means access to proven models, shared research, and a network of people committed to the same mission &mdash; the flourishing of vulnerable children everywhere.</p>
+        <h2 class="section-title" style="text-align:left;">{{ site.about_global_heading }}</h2>
+        {% if site.about_global_body_1 %}<p class="card-text" style="margin-top:1rem;">{{ site.about_global_body_1 }}</p>{% endif %}
+        {% if site.about_global_body_2 %}<p class="card-text" style="margin-top:0.75rem;">{{ site.about_global_body_2 }}</p>{% endif %}
       </div>
+      {% if accreditations %}
       <div style="background:var(--color-bg-alt); border-radius:var(--radius); padding:2rem;">
         <p class="section-heading" style="text-align:left; margin-bottom:1.25rem;">Accreditations &amp; recognition</p>
         <div style="display:flex; flex-direction:column; gap:1rem;">
+          {% for acc in accreditations %}
           <div style="display:flex; align-items:center; gap:1rem; padding:1rem; background:#fff; border-radius:var(--radius-sm); border:1px solid var(--color-border);">
-            <i class="fa-solid fa-star" style="color:#f59e0b; font-size:1.4rem; flex-shrink:0;"></i>
+            <i class="{{ acc.icon }}" style="color:{{ acc.icon_color|default:'var(--color-primary)' }}; font-size:1.4rem; flex-shrink:0;"></i>
             <div>
-              <div style="font-weight:600; font-size:0.9rem; color:var(--color-text-dark);">Charity Navigator</div>
-              <div style="font-size:0.82rem; color:var(--color-text-muted);">Four-Star Rating</div>
+              <div style="font-weight:600; font-size:0.9rem; color:var(--color-text-dark);">{{ acc.name }}</div>
+              {% if acc.subtitle %}<div style="font-size:0.82rem; color:var(--color-text-muted);">{{ acc.subtitle }}</div>{% endif %}
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:1rem; padding:1rem; background:#fff; border-radius:var(--radius-sm); border:1px solid var(--color-border);">
-            <i class="fa-solid fa-medal" style="color:#a855f7; font-size:1.4rem; flex-shrink:0;"></i>
-            <div>
-              <div style="font-weight:600; font-size:0.9rem; color:var(--color-text-dark);">GuideStar</div>
-              <div style="font-size:0.82rem; color:var(--color-text-muted);">Platinum Seal of Transparency</div>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:1rem; padding:1rem; background:#fff; border-radius:var(--radius-sm); border:1px solid var(--color-border);">
-            <i class="fa-solid fa-check-double" style="color:var(--color-primary); font-size:1.4rem; flex-shrink:0;"></i>
-            <div>
-              <div style="font-weight:600; font-size:0.9rem; color:var(--color-text-dark);">ECFA</div>
-              <div style="font-size:0.82rem; color:var(--color-text-muted);">Evangelical Council for Financial Accountability</div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </section>

@@ -8,8 +8,8 @@
 <section class="hero hero-short" style="background-image:url('https://res.cloudinary.com/dcl5hwubp/image/upload/f_auto,q_auto/hero/hero_contact'); background-size:cover; background-position:center;">
   <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <h1 class="hero-title">Get in touch</h1>
-    <p class="hero-subtitle">We would love to hear from you. Find us at our centres across Nairobi, Nyeri, and Kisii counties.</p>
+    <h1 class="hero-title">{{ site.get_involved_hero_title }}</h1>
+    <p class="hero-subtitle">{{ site.get_involved_hero_subtitle }}</p>
   </div>
 </section>
 
@@ -31,31 +31,13 @@
         </div>
 
         <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          {% for loc in locations %}
           <div class="location-card">
-            <div class="location-card__badge">Nairobi County</div>
-            <div class="location-card__name">Nairobi Hope Centre</div>
-            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
+            <div class="location-card__badge">{{ loc.badge }}</div>
+            <div class="location-card__name">{{ loc.name }}</div>
+            <div class="location-card__focus">{{ loc.focus }}</div>
           </div>
-          <div class="location-card">
-            <div class="location-card__badge">Nyeri County</div>
-            <div class="location-card__name">Karundas Hope Centre</div>
-            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
-          </div>
-          <div class="location-card">
-            <div class="location-card__badge">Nyeri County</div>
-            <div class="location-card__name">Hall Mead School</div>
-            <div class="location-card__focus">Restorative Education</div>
-          </div>
-          <div class="location-card">
-            <div class="location-card__badge">Nyeri County</div>
-            <div class="location-card__name">Nyeri Clinic</div>
-            <div class="location-card__focus">Community Health Services &mdash; in partnership with Nyeri County Government</div>
-          </div>
-          <div class="location-card">
-            <div class="location-card__badge">Kisii County</div>
-            <div class="location-card__name">Nyamarambe Hope Centre</div>
-            <div class="location-card__focus">Family Strengthening &amp; Justice Advocacy</div>
-          </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -123,17 +105,15 @@
   </div>
 </section>
 
-<!-- ===== VOLUNTEER ===== -->
+<!-- ===== VOLUNTEER & PARTNER ===== -->
 <section class="section" style="background:var(--color-bg-alt);">
   <div class="container">
     <div class="involvement-row">
       <div class="involvement-icon"><i class="fa-solid fa-people-group"></i></div>
       <div>
-        <h2>Volunteer</h2>
+        <h2>{{ site.volunteer_heading }}</h2>
         {% if site.volunteer_info %}
         <div class="prose" style="margin-bottom:1rem;">{{ site.volunteer_info|linebreaks }}</div>
-        {% else %}
-        <p class="involvement-lead">We welcome volunteers with skills in education, healthcare, counselling, legal services, and administration across our locations in Nairobi, Nyeri, and Kisii counties.</p>
         {% endif %}
         <a href="mailto:{{ site.email }}" class="btn-primary">Express your interest</a>
       </div>
@@ -142,8 +122,8 @@
     <div class="involvement-row">
       <div class="involvement-icon"><i class="fa-solid fa-handshake"></i></div>
       <div>
-        <h2>Partner with us</h2>
-        <p class="involvement-lead">Is your organisation looking to partner with a credible, faith-based NGO with deep roots in the Kenyan community? We are open to institutional partnerships, church collaborations, and corporate CSR programmes.</p>
+        <h2>{{ site.partner_heading }}</h2>
+        <p class="involvement-lead">{{ site.partner_body }}</p>
         <a href="mailto:{{ site.email }}" class="btn-primary">Get in touch</a>
       </div>
     </div>
@@ -151,8 +131,8 @@
     <div class="involvement-row" style="margin-bottom:0;">
       <div class="involvement-icon"><i class="fa-solid fa-school"></i></div>
       <div>
-        <h2>Schools and institutions</h2>
-        <p class="involvement-lead">KAI-K partners with public and private schools, county governments, and child-serving institutions to provide trauma-informed care training for staff who work with children. If your school or institution would like to equip your team with the knowledge and skills to care for children in a trauma-informed way, we would be glad to hear from you.</p>
+        <h2>{{ site.schools_heading }}</h2>
+        <p class="involvement-lead">{{ site.schools_body }}</p>
         <a href="mailto:{{ site.email }}" class="btn-primary">Get in touch</a>
       </div>
     </div>
