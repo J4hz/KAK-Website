@@ -1,14 +1,16 @@
 from django.core.management.base import BaseCommand
+from django.core.management import call_command
 from website.models import (
-    Theme, CoreValue, Accreditation, InterventionLevel,
+    NavItem, Theme, CoreValue, Accreditation, InterventionLevel,
     Location, Activity, TeamRole, ImpactStory,
 )
 
 
 class Command(BaseCommand):
-    help = 'Seed initial data for all new content models (skips any model that already has records)'
+    help = 'Seed initial data for all content models (skips any model that already has records)'
 
     def handle(self, *args, **options):
+        self._initial_fixtures()
         self._themes()
         self._values()
         self._accreditations()
@@ -18,6 +20,15 @@ class Command(BaseCommand):
         self._team_roles()
         self._stories()
         self.stdout.write(self.style.SUCCESS('Seed complete.'))
+
+    def _initial_fixtures(self):
+        """Load initial_data.json (NavItems, HeroSection, Programs, ImpactStats, etc.)
+        Only runs if NavItems don't exist yet — safe to skip on redeploys."""
+        if NavItem.objects.exists():
+            self.stdout.write('  Initial fixtures: already loaded, skipping')
+            return
+        call_command('loaddata', 'website/fixtures/initial_data.json', verbosity=0)
+        self.stdout.write('  Initial fixtures: loaded (NavItems, HeroSection, Programs, SiteSettings, ImpactStats, Testimonials)')
 
     def _themes(self):
         if Theme.objects.exists():
