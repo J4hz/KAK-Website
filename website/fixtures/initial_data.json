@@ -5,7 +5,7 @@
     "fields": {
       "org_name": "Kids Alive International Kenya",
       "tagline": "Trauma into Triumph | Justice that Heals | Bonds that Mend",
-      "logo": "branding/Kids_alive_logo.jpg",
+      "logo": "site/Kids_alive_logo-removebg-preview_lOpCwKu",
       "favicon": null,
       "mission_statement": "Inspired by Isaiah 1:17, our mission is to serve vulnerable children by constantly learning better ways to meet their needs, earnestly seeking justice for them, empowering them for a healthy future, and advocating for community change.",
       "vision_statement": "Every child we serve will enjoy a vibrant, life-changing relationship with God, experience emotional and physical well-being, be equipped for a life of independence and service, and live life in family and community, free of fear and violence.",
@@ -38,37 +38,79 @@
   {
     "model": "website.navitem",
     "pk": 1,
-    "fields": { "label": "Our Story", "url": "/", "order": 1, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "Our Story",
+      "url": "/",
+      "order": 1,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.navitem",
     "pk": 2,
-    "fields": { "label": "About Us", "url": "/about/", "order": 2, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "About Us",
+      "url": "/about/",
+      "order": 2,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.navitem",
     "pk": 3,
-    "fields": { "label": "Programs", "url": "/programs/", "order": 3, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "Programs",
+      "url": "/programs/",
+      "order": 3,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.navitem",
     "pk": 4,
-    "fields": { "label": "Impact", "url": "/impact/", "order": 4, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "Impact",
+      "url": "/impact/",
+      "order": 4,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.navitem",
     "pk": 8,
-    "fields": { "label": "Gallery", "url": "/gallery/", "order": 45, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "Gallery",
+      "url": "/gallery/",
+      "order": 45,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.navitem",
     "pk": 5,
-    "fields": { "label": "News", "url": "/news/", "order": 5, "is_external": false, "is_active": false }
+    "fields": {
+      "label": "News",
+      "url": "/news/",
+      "order": 5,
+      "is_external": false,
+      "is_active": false
+    }
   },
   {
     "model": "website.navitem",
     "pk": 6,
-    "fields": { "label": "Contact", "url": "/get-involved/", "order": 50, "is_external": false, "is_active": true }
+    "fields": {
+      "label": "Contact",
+      "url": "/get-involved/",
+      "order": 50,
+      "is_external": false,
+      "is_active": true
+    }
   },
   {
     "model": "website.herosection",
@@ -76,7 +118,7 @@
     "fields": {
       "headline": "Restoring hope for children and families in Kenya",
       "subheadline": "Your gift helps children stay in school, safe, and well nourished so they can heal and thrive.",
-      "background_image": "hero/Nexus_Jan_8th_2025-1.jpg",
+      "background_image": "hero/hero_home",
       "background_video_url": "",
       "primary_cta_text": "Donate now",
       "primary_cta_url": "#",
@@ -169,17 +211,35 @@
   {
     "model": "website.impactstat",
     "pk": 1,
-    "fields": { "label": "Children reached in Kenya", "value": "800", "suffix": "+", "icon": "fa-solid fa-children", "order": 1 }
+    "fields": {
+      "label": "Children reached in Kenya",
+      "value": "800",
+      "suffix": "+",
+      "icon": "fa-solid fa-children",
+      "order": 1
+    }
   },
   {
     "model": "website.impactstat",
     "pk": 2,
-    "fields": { "label": "Years serving Kenya", "value": "20", "suffix": "+", "icon": "fa-solid fa-calendar-check", "order": 2 }
+    "fields": {
+      "label": "Years serving Kenya",
+      "value": "20",
+      "suffix": "+",
+      "icon": "fa-solid fa-calendar-check",
+      "order": 2
+    }
   },
   {
     "model": "website.impactstat",
     "pk": 3,
-    "fields": { "label": "Counties of operation", "value": "3", "suffix": "", "icon": "fa-solid fa-map-location-dot", "order": 3 }
+    "fields": {
+      "label": "Counties of operation",
+      "value": "3",
+      "suffix": "",
+      "icon": "fa-solid fa-map-location-dot",
+      "order": 3
+    }
   },
   {
     "model": "website.testimonial",

@@ -90,7 +90,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ---- Media / Cloudinary ----
 CLOUDINARY_STORAGE = {
@@ -105,10 +104,18 @@ _cloudinary_configured = all([
     CLOUDINARY_STORAGE['API_SECRET'],
 ])
 
+# Django 4.2+ uses STORAGES dict; DEFAULT_FILE_STORAGE and STATICFILES_STORAGE are ignored in 5.x
 if _cloudinary_configured:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    MEDIA_URL = f"https://res.cloudinary.com/{CLOUDINARY_STORAGE['CLOUD_NAME']}/"
+    STORAGES = {
+        'default': {'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
+    MEDIA_URL = f"https://res.cloudinary.com/{CLOUDINARY_STORAGE['CLOUD_NAME']}/image/upload/"
 else:
+    STORAGES = {
+        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+    }
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
 
