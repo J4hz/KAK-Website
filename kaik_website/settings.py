@@ -96,6 +96,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', ''),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY', ''),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', ''),
+    'PREFIX': '',  # Must be empty — otherwise defaults to MEDIA_URL and corrupts public_ids
 }
 
 _cloudinary_configured = all([
@@ -105,19 +106,16 @@ _cloudinary_configured = all([
 ])
 
 # Django 4.2+ uses STORAGES dict; DEFAULT_FILE_STORAGE and STATICFILES_STORAGE are ignored in 5.x
-if _cloudinary_configured:
-    STORAGES = {
-        'default': {'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage'},
-        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
-    }
-    MEDIA_URL = f"https://res.cloudinary.com/{CLOUDINARY_STORAGE['CLOUD_NAME']}/image/upload/"
-else:
-    STORAGES = {
-        'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
-        'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
-    }
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+STORAGES = {
+    'default': {
+        'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage'
+        if _cloudinary_configured
+        else 'django.core.files.storage.FileSystemStorage'
+    },
+    'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'},
+}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
