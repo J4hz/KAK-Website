@@ -237,6 +237,28 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
 }
 
+/* ---- Responsive grid utilities (replaces inline styles for responsive control) ---- */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+.two-col-grid--mission {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+.two-col-grid--global {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
 /* ---- Cards ---- */
 .cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.5rem; }
 .card {
@@ -578,6 +600,10 @@ p:last-child { margin-bottom: 0; }
   .contact-map-grid { grid-template-columns: 1fr; }
   .about-two-col { grid-template-columns: 1fr; gap: 3rem; }
   .featured-strip-grid { grid-template-columns: 1fr; }
+  .two-col-grid,
+  .two-col-grid--mission,
+  .two-col-grid--global { grid-template-columns: 1fr; gap: 2rem; }
+  .stats-video-placeholder { min-height: 180px; }
 }
 @media (max-width: 640px) {
   .cards-grid { grid-template-columns: 1fr; }
@@ -595,4 +621,27 @@ p:last-child { margin-bottom: 0; }
   .about-image-grid img:nth-child(n) { margin-top: 0 !important; }
   .hero-stats-grid { gap: 0.5rem; }
   .hero-stat-number { font-size: 1.4rem; }
+  .post-layout .sidebar-box { margin-top: 2rem; }
+  .impact-band { flex-direction: column; }
+  .impact-band__text { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .container { padding-inline: 1rem; }
+  .section { padding: 3rem 1rem; }
+  .hero-stats-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .hero-stat-number { font-size: 1.6rem; }
+  .hero-stat-label { font-size: 0.85rem; }
+  .hero-stats-bar { padding: 1.25rem 1rem; }
+  .hero-inner { padding: 5rem 1rem 5rem; }
+  .hero-title { font-size: 1.9rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .btn-primary, .btn-secondary { padding: 0.6rem 1.2rem; font-size: 0.88rem; }
+  .data-table th, .data-table td { padding: 0.6rem 0.6rem; }
+  .data-table { font-size: 0.82rem; }
+  .masonry-section { padding: 1.5rem 1rem 3rem; }
+  .filter-bar { padding: 1.5rem 1rem 0; gap: 0.4rem; }
+  .filter-btn { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
+  .cta-section { padding: 3rem 1rem; }
 }

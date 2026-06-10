@@ -17,7 +17,7 @@
 {% if site.about_story %}
 <section class="section" style="background:#fff;">
   <div class="container">
-    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3rem; align-items:start;">
+    <div class="two-col-grid">
       <div>
         <p class="section-heading" style="text-align:left;">Who we are</p>
         <h2 class="section-title" style="text-align:left;">About Kids Alive International Kenya</h2>
@@ -84,7 +84,7 @@
     <p class="section-heading">Our themes</p>
     <h2 class="section-title">{{ site.about_themes_heading }}</h2>
     <p class="section-subtitle">{{ site.about_themes_subtitle }}</p>
-    <div style="display:grid; grid-template-columns:repeat({{ themes|length }}, 1fr); gap:2rem; margin-top:2.5rem;">
+    <div class="themes-grid">
       {% for theme in themes %}
       <article class="card" style="padding:2rem;">
         <div class="card-icon" style="font-size:2rem; margin-bottom:1rem;"><i class="{{ theme.icon }}"></i></div>
@@ -100,7 +100,7 @@
 <!-- ===== MISSION & VISION ===== -->
 <section class="section" style="background:#fff;">
   <div class="container">
-    <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr); gap:2.5rem; align-items:flex-start;">
+    <div class="two-col-grid two-col-grid--mission">
       <div>
         <p class="section-heading" style="text-align:left;">Our mission</p>
         <h2 class="section-title" style="text-align:left;">{{ site.about_mission_heading }}</h2>
@@ -155,7 +155,7 @@
 <!-- ===== GLOBAL AFFILIATION ===== -->
 <section class="section" style="background:#fff;">
   <div class="container">
-    <div style="display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:3rem; align-items:start;">
+    <div class="two-col-grid two-col-grid--global">
       <div>
         <p class="section-heading" style="text-align:left;">Global family</p>
         <h2 class="section-title" style="text-align:left;">{{ site.about_global_heading }}</h2>
