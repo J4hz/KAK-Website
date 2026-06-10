@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import (
-    SiteSettings, NavItem, HeroSection, Program, ImpactStat,
+    SiteSettings, NavItem, HeroSection, HeroSlide, Program, ImpactStat,
     TeamMember, Testimonial, NewsPost, GalleryImage, Partner,
     ContactMessage, Page,
     Theme, CoreValue, Accreditation, InterventionLevel, Location,
@@ -45,7 +45,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('About Page — Hero & At a Glance', {
             'fields': (
-                'about_hero_title', 'about_hero_subtitle',
+                'about_hero_title', 'about_hero_subtitle', 'about_hero_image',
                 'about_glance_type', 'about_glance_country', 'about_glance_headquarters',
                 'about_glance_areas', 'about_glance_global_parent', 'about_glance_global_presence',
                 'about_glance_children_reached', 'about_glance_scripture',
@@ -69,7 +69,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Programs Page', {
             'fields': (
-                'programs_hero_title', 'programs_hero_subtitle',
+                'programs_hero_title', 'programs_hero_subtitle', 'programs_hero_image',
                 'programs_levels_subtitle', 'programs_locations_subtitle',
                 'programs_activities_intro',
                 'mdt_intro', 'safeguarding_text',
@@ -79,7 +79,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Get Involved / Contact Page', {
             'fields': (
-                'get_involved_hero_title', 'get_involved_hero_subtitle',
+                'get_involved_hero_title', 'get_involved_hero_subtitle', 'get_involved_hero_image',
                 'volunteer_heading',
                 'partner_heading', 'partner_body',
                 'schools_heading', 'schools_body',
@@ -88,7 +88,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Impact Page', {
             'fields': (
-                'impact_hero_title', 'impact_hero_subtitle',
+                'impact_hero_title', 'impact_hero_subtitle', 'impact_hero_image',
                 'impact_stories_subtitle',
                 'impact_cta_heading', 'impact_cta_body',
             ),
@@ -96,18 +96,18 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Gallery Page', {
             'fields': (
-                'gallery_hero_title', 'gallery_hero_subtitle',
+                'gallery_hero_title', 'gallery_hero_subtitle', 'gallery_hero_image',
                 'gallery_cta_heading', 'gallery_cta_body',
             ),
             'classes': ('collapse',),
         }),
         ('Contact Page', {
-            'fields': ('contact_hero_title', 'contact_hero_subtitle'),
+            'fields': ('contact_hero_title', 'contact_hero_subtitle', 'contact_hero_image'),
             'classes': ('collapse',),
         }),
         ('News Page', {
             'fields': (
-                'news_hero_title', 'news_hero_subtitle',
+                'news_hero_title', 'news_hero_subtitle', 'news_hero_image',
                 'news_sidebar_cta_heading', 'news_sidebar_cta_body',
             ),
             'classes': ('collapse',),
@@ -142,6 +142,27 @@ class HeroSectionAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(HeroSlide)
+class HeroSlideAdmin(admin.ModelAdmin):
+    list_display = ('title', 'order', 'is_active', 'image_preview')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+    fieldsets = (
+        ('Content', {'fields': ('title', 'subtitle', 'button_text')}),
+        ('Image', {'fields': ('image',)}),
+        ('Settings', {'fields': ('order', 'is_active')}),
+    )
+
+    @admin.display(description='Image')
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="height:40px;border-radius:4px;object-fit:cover;">',
+                obj.image.url,
+            )
+        return '—'
 
 
 @admin.register(Theme)

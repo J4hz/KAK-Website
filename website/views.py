@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import (
-    HeroSection, Program, ImpactStat, TeamMember, Testimonial,
+    HeroSection, HeroSlide, Program, ImpactStat, TeamMember, Testimonial,
     NewsPost, GalleryImage, Partner, ContactMessage, SiteSettings,
     Theme, CoreValue, Accreditation, InterventionLevel, Location,
     Activity, TeamRole, ImpactStory,
@@ -13,16 +13,16 @@ from .forms import ContactForm
 def home(request):
     hero = HeroSection.get()
 
-    hero_slides_qs = HeroSection.objects.filter(is_active=True).order_by('pk')
-    hero_slides = []
-    for slide in hero_slides_qs:
-        hero_slides.append({
-            'title': slide.headline,
-            'subtitle': slide.subheadline,
-            'image_url': slide.background_image.url if slide.background_image else None,
-            'button_primary': slide.primary_cta_text,
-            'button_secondary': slide.secondary_cta_text,
-        })
+    slides_qs = HeroSlide.objects.filter(is_active=True).order_by('order')
+    hero_slides = [
+        {
+            'title': s.title,
+            'subtitle': s.subtitle,
+            'image_url': s.image.url if s.image else None,
+            'button_secondary': s.button_text,
+        }
+        for s in slides_qs
+    ]
 
     featured_programs = Program.objects.filter(is_featured=True).order_by('order')[:3]
     features = None

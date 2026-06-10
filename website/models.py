@@ -96,6 +96,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='Kids Alive International Kenya has served vulnerable children and families across Kenya for over 20 years — rooted in faith, driven by justice.',
         verbose_name='Hero subtitle')
+    about_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     about_glance_type = models.CharField(
         max_length=200, blank=True, default='Non-profit faith-based NGO',
         verbose_name='At a Glance — Type')
@@ -182,6 +186,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='Restorative education, family strengthening, protective care, justice advocacy, and community health — working across Nairobi, Nyeri, and Kisii counties.',
         verbose_name='Hero subtitle')
+    programs_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     programs_levels_subtitle = models.TextField(
         blank=True,
         default='KAI-K operates across five complementary areas, designed to meet children where they are and walk with them toward healing and wholeness.',
@@ -220,6 +228,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='We would love to hear from you. Find us at our centres across Nairobi, Nyeri, and Kisii counties.',
         verbose_name='Hero subtitle')
+    get_involved_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     volunteer_heading = models.CharField(
         max_length=200, blank=True, default='Volunteer',
         verbose_name='Volunteer section heading')
@@ -248,6 +260,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='Real numbers. Real lives. Real transformation in Kenya.',
         verbose_name='Hero subtitle')
+    impact_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     impact_stories_subtitle = models.CharField(
         max_length=300, blank=True,
         default='These are real lives touched by KAI-K — names changed to protect privacy.',
@@ -270,6 +286,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='Moments of learning, joy, and transformation from across our programs in Kenya.',
         verbose_name='Hero subtitle')
+    gallery_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     gallery_cta_heading = models.CharField(
         max_length=200, blank=True, default='Help us write more stories like these',
         verbose_name='CTA heading')
@@ -288,6 +308,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='We would love to hear from you. Reach out and we will respond within 2 business days.',
         verbose_name='Hero subtitle')
+    contact_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
 
     # =========================================================
     # NEWS PAGE
@@ -299,6 +323,10 @@ class SiteSettings(models.Model):
         blank=True,
         default='Stories of hope and transformation from across Kenya.',
         verbose_name='Hero subtitle')
+    news_hero_image = models.ImageField(
+        upload_to='hero/', blank=True, null=True,
+        verbose_name='Hero background image',
+        help_text='Leave blank to use the default static image')
     news_sidebar_cta_heading = models.CharField(
         max_length=200, blank=True, default='Support our work',
         verbose_name='Sidebar CTA heading')
@@ -369,6 +397,25 @@ class HeroSection(models.Model):
             'subheadline': 'Giving vulnerable children hope, education, and a future.',
         })
         return obj
+
+
+class HeroSlide(models.Model):
+    title = models.CharField(max_length=300)
+    subtitle = models.TextField(blank=True)
+    image = models.ImageField(upload_to='hero/', blank=True, null=True)
+    button_text = models.CharField(
+        max_length=100, blank=True, default='Learn more',
+        help_text='Text for the slide button (links to About page)')
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Home Page Slide'
+        verbose_name_plural = 'Home Page Slides'
+
+    def __str__(self):
+        return self.title
 
 
 class Program(models.Model):

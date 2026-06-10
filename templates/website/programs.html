@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="hero hero-short" style="background-image:url('{% static "images/hero_programs.jpg" %}'); background-size:cover; background-position:center;">
+<section class="hero hero-short" style="background-image:url('{% if site.programs_hero_image %}{{ site.programs_hero_image.url }}{% else %}{% static "images/hero_programs.jpg" %}{% endif %}'); background-size:cover; background-position:center;">
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <h1 class="hero-title">{{ site.programs_hero_title }}</h1>
